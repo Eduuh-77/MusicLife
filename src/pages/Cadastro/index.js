@@ -24,11 +24,18 @@ function handleCadastro(data){
 
  return(
     <View style={styles.container}>
+
+        <TouchableOpacity style={styles.buttonBack} 
+        onPress={ () => navigation.navigate('Welcome')}>
+           <Text style={styles.buttonTextBack} > Voltar </Text>
+        </TouchableOpacity>
+
         <View style={styles.containerHeader}>
         <Image source={require('../../assets/Ativo1.jpg')}
         style={{width:'100%'}}
         resizeMode="contain"
         />
+       
         </View>
 
         <View style = {styles.containerForm}>
@@ -108,9 +115,23 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:'#1E1E1E'
     },
+    buttonBack:{
+        backgroundColor:'#00FF00',
+        width: 100,
+        height:30,
+        marginLeft:'5%',
+        marginTop:'8%'
+    },
+    buttonTextBack:{
+        color: '#000000',
+        fontSize:23,
+        fontWeight: 'bold',
+        alignSelf:'center'
+    },
     containerHeader:{
         marginTop: 90,
         marginBottom: 10,
+      
     },
     containerForm:{
         flex:1,

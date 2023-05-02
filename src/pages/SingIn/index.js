@@ -8,6 +8,12 @@ export default function SignIn() {
 
  return(
     <View style={styles.container}>
+
+        <TouchableOpacity style={styles.buttonBack} 
+        onPress={ () => navigation.navigate('Welcome')}>
+           <Text style={styles.buttonTextBack} > Voltar </Text>
+        </TouchableOpacity>
+
         <View style={styles.containerHeader}>
         <Image source={require('../../assets/Ativo1.jpg')}
         style={{width:'100%'}}
@@ -29,7 +35,7 @@ export default function SignIn() {
                     <Text style= {styles.buttonText} >Login</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style= {styles.buttonRegister}>
+                <TouchableOpacity style= {styles.buttonRegister} onPress={ () => navigation.navigate('Cadastro')}>
                     <Text style= {styles.registerText} >Não possui uma conta? Cadastre-se</Text>
                 </TouchableOpacity>
             </View>
@@ -42,6 +48,19 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         backgroundColor:'#1E1E1E'
+    },
+    buttonBack:{
+        backgroundColor:'#00FF00',
+        width: 100,
+        height:30,
+        marginLeft:'5%',
+        marginTop:'8%'
+    },
+    buttonTextBack:{
+        color: '#000000',
+        fontSize:23,
+        fontWeight: 'bold',
+        alignSelf:'center'
     },
     containerHeader:{
         marginTop: 90,
@@ -80,7 +99,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     buttonText:{
-        collor: '#000000',
+        color: '#000000',
         fontSize:18,
         fontWeight: 'bold'
     },
