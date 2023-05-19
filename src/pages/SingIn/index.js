@@ -1,114 +1,62 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from "react-native";
-
+import styles from "./styles";
 import { useNavigation } from '@react-navigation/native'
+import { useForm, Controller } from 'react-hook-form'
+import UsersContext from "../../contexts/Users";
 
 export default function SignIn() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
+  const { login, isAuthenticated } = useContext(UsersContext);
 
- return(
+  const [email, setEmail] = React.useState();
+  const [password, setPassword] = React.useState();
+
+  const handleSignIn = () => {
+    login(email, password);
+  }
+
+  return (
     <View style={styles.container}>
 
-        <TouchableOpacity style={styles.buttonBack} 
-        onPress={ () => navigation.navigate('Welcome')}>
-           <Text style={styles.buttonTextBack} > Voltar </Text>
+      <TouchableOpacity style={styles.buttonBack}
+        onPress={() => navigation.navigate('Welcome')}>
+        <Text style={styles.buttonTextBack} > Voltar </Text>
+      </TouchableOpacity>
+
+      <View style={styles.containerHeader}>
+        <Image source={require('../../assets/Ativo1.jpg')}
+          style={{ width: '100%' }}
+          resizeMode="contain"
+        />
+      </View>
+
+      <View style={styles.containerForm}>
+        <Text style={styles.title}> Email</Text>
+        <TextInput placeholder="Digite um email..."
+          style={styles.input}
+          onChangeText={inputText => setEmail(inputText)}
+          value={email} />
+
+        <Text style={styles.title}> Senha</Text>
+        <TextInput placeholder="Sua senha..."
+          style={styles.input}
+          onChangeText={inputText => setPassword(inputText)}
+          value={password} />
+
+
+        <TouchableOpacity style={styles.button} onPress={handleSignIn}>
+
+          <Text style={styles.buttonText} >Login</Text>
         </TouchableOpacity>
 
-        <View style={styles.containerHeader}>
-        <Image source={require('../../assets/Ativo1.jpg')}
-        style={{width:'100%'}}
-        resizeMode="contain"
-        />
-        </View>
+        <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate('Cadastro')}>
+          <Text style={styles.registerText} >Não possui uma conta? Cadastre-se</Text>
+        </TouchableOpacity>
+      </View>
 
-        <View style = {styles.containerForm}>
-                <Text style={styles.title}> Email</Text>
-                <TextInput placeholder="Digite um email..." 
-                style={styles.input}/>
-
-                <Text style={styles.title}> Senha</Text>
-                <TextInput placeholder="Sua senha..." 
-                    style={styles.input}/>
-
-
-                <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('Teste')}>
-                    <Text style= {styles.buttonText} >Login</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style= {styles.buttonRegister} onPress={ () => navigation.navigate('Cadastro')}>
-                    <Text style= {styles.registerText} >Não possui uma conta? Cadastre-se</Text>
-                </TouchableOpacity>
-            </View>
-
-         </View>
-    );
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:'#1E1E1E'
-    },
-    buttonBack:{
-        backgroundColor:'#00FF00',
-        width: 100,
-        height:30,
-        marginLeft:'5%',
-        marginTop:'8%'
-    },
-    buttonTextBack:{
-        color: '#000000',
-        fontSize:23,
-        fontWeight: 'bold',
-        alignSelf:'center'
-    },
-    containerHeader:{
-        marginTop: 90,
-        marginBottom: 10,
-    },
-    containerForm:{
-        flex:1,
-        paddingStart:'5%',
-        paddingEnd: '5%',
-        alignSelf:'center'
-    },
-    title:{
-        color:'#fff',
-        fontSize:20,
-        marginTop: 28,
-        
-    },
-    input:{
-        color: '#fff',
-        borderBottomWidth: 1,
-        borderBottomColor: '#fff',
-        height:40,
-        width: 322,
-        marginBottom:12,
-        fontSize: 16,
-        
-    },
-    button:{
-        backgroundColor:'#00FF00',
-        width: 322,
-        height:52,
-        borderRadius: 4,
-        paddingVertical: 8,
-        marginTop: 14,
-        justifyContent:'center',
-        alignItems: 'center',
-    },
-    buttonText:{
-        color: '#000000',
-        fontSize:18,
-        fontWeight: 'bold'
-    },
-    buttonRegister:{
-        marginTop: 14,
-        allingSelf: 'center'
-    },
-    registerText:{
-        color:'#a1a1a1'
-    }
 
-})

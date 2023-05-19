@@ -28,7 +28,7 @@ export default function Routes(){
             <Stack.Screen
                 name="Teste"
                 component={Teste}
-                options={{headerShown: false}}
+                
             />
         </Stack.Navigator>
     )
